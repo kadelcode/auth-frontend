@@ -28,6 +28,11 @@ export default function LoginPage() {
     try {
       const response = await axios.post(`${getBaseUrl()}/login`, { email, password });
       if (response.status === 200) {
+        const token = response.data.token;
+        console.log(token)
+
+        localStorage.setItem('token', token);
+
         // Redirect to the dashboard or home page
         router.push("/dashboard");
       }

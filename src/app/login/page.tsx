@@ -55,7 +55,7 @@ export default function LoginPage() {
         <h2 className="mb-4 text-2xl font-bold">Login</h2>
         {error && <p className="mb-4 font-bold text-red-500">{error}</p>}
         <div className="mb-4">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email" className="text-base">Email</Label>
           <Input
             type="email"
             id="email"
@@ -65,7 +65,7 @@ export default function LoginPage() {
           />
         </div>
         <div className="mb-4">
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="password" className="text-base">Password</Label>
           <Input
             type="password"
             id="password"
@@ -74,7 +74,7 @@ export default function LoginPage() {
             required
           />
         </div>
-        <Button type="submit" className="cursor-pointer w-full">
+        <Button type="submit" className="cursor-pointer w-full bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded">
             {loading ? (
                 <Loader2 className="animate-spin" />
             ) : (

@@ -7,10 +7,15 @@ import { Loader } from "lucide-react"
 import axios from "axios"
 import { Button } from "@/components/ui/button"
 
+type User = {
+    id: number;
+    name: string;
+    email: string;
+}
 
 export default function DashboardPage() {
     const router = useRouter()
-    const [user, setUser] = useState<any>(null)
+    const [user, setUser] = useState<User | null>(null)
 
     useEffect(() => {
         const token = localStorage.getItem('token')

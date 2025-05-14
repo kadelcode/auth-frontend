@@ -7,14 +7,19 @@ import axios from "axios";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Loader2 } from "lucide-react";
+import { Loader2, Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+}
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,8 +56,8 @@ export default function LoginPage() {
 
   return (
     <div className="flex items-center justify-center h-screen bg-black">
-      <form onSubmit={handleLogin} className="w-[346px] text-white mx-auto p-6 border rounded-2xl shadow-md">
-        <h2 className="mb-4 text-2xl font-bold">Login</h2>
+      <form onSubmit={handleLogin} className="w-[346px] text-white mx-auto p-6 border border-gray-700 rounded-2xl shadow-md">
+        <h2 className="mb-4 text-2xl font-bold text-zinc-400">Login</h2>
         {error && <p className="mb-4 font-bold text-red-500">{error}</p>}
         <div className="mb-4">
           <Label htmlFor="email" className="text-base">Email</Label>
@@ -64,15 +69,22 @@ export default function LoginPage() {
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <Label htmlFor="password" className="text-base">Password</Label>
           <Input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="absolute right-2 top-8 text-gray-500"
+          >
+            {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+          </button>
         </div>
         <Button type="submit" className="cursor-pointer w-full bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded">
             {loading ? (

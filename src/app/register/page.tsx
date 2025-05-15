@@ -40,7 +40,9 @@ export default function RegisterPage() {
         return;
         }
         try {
-        const response = await axios.post(`${getBaseUrl()}/register`, {name, email, password });
+        const response = await axios.post(`${getBaseUrl()}/register`, {name, email, password }, {
+            withCredentials: true,
+        });
         if (response.status === 201) {
             // Redirect to the login page
             router.push("/login");
@@ -52,6 +54,7 @@ export default function RegisterPage() {
         } else if (axios.isAxiosError(error) && error.response && error.response.status === 409) {
             setError("Email already exists. Please use a different email.");
         } else if (axios.isAxiosError(error) && error.response && error.response.status === 500) {
+            console.log(error)
             setError("Server error. Please try again later.");
         } else {
             setError("An error occurred. Please try again later.");

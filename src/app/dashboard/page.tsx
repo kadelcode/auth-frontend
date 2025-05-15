@@ -18,7 +18,19 @@ export default function DashboardPage() {
     const [user, setUser] = useState<User | null>(null)
 
     useEffect(() => {
-        const token = localStorage.getItem('token')
+        const fetchUser = async () => {
+            try {
+                const res = await axios.get(`${getBaseUrl()}/profile`, {
+                    withCredentials: true, // Include cookie automatically
+                })
+                setUser(res.data)
+            } catch {
+                router.push("/login")
+            }
+        }
+
+        fetchUser();
+        /*const token = localStorage.getItem('token')
         if (!token) {
             router.push('/login')
         } else {
@@ -28,8 +40,8 @@ export default function DashboardPage() {
                 }
             }).then(res => setUser(res.data))
               .catch(() => router.push('/login'))
-        }
-    }, [])
+        }*/
+    }, [router])
 
     return (
         <div className="p-6 bg-black h-screen text-white">

@@ -12,7 +12,7 @@ import { Loader2, Eye, EyeOff } from "lucide-react";
 
 export default function RegisterPage() {
     const [name, setName] = useState("");
-    const [username, setUsername] = useState("");
+    // const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -40,7 +40,7 @@ export default function RegisterPage() {
         return;
         }
         try {
-        const response = await axios.post(`${getBaseUrl()}/register`, {name, username, email, password });
+        const response = await axios.post(`${getBaseUrl()}/register`, {name, email, password });
         if (response.status === 201) {
             // Redirect to the login page
             router.push("/login");
@@ -77,7 +77,7 @@ export default function RegisterPage() {
                         className="mt-1"
                     />
                 </div>
-                <div className="mb-4">
+                {/*<div className="mb-4">
                     <Label htmlFor="username" className="text-base">Username</Label>
                     <Input
                         type="text"
@@ -86,8 +86,8 @@ export default function RegisterPage() {
                         onChange={(e) => setUsername(e.target.value)}
                         required
                         className="mt-1"
-                    />  
-                </div>
+                    /> 
+                </div>*/}
                 <div className="mb-4">
                     <Label htmlFor="email" className="text-base">Email</Label>
                     <Input

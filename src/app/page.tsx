@@ -23,7 +23,7 @@ export default function HomePage() {
       </p>
       <div className="flex gap-4">
         <Button
-          className="bg-zinc-900 hover:bg-zinc-800 cursor-pointer" 
+          className="bg-zinc-900 hover:bg-zinc-800 cursor-pointer text-white" 
           onClick={() => router.push('/login')}
         >
           Login

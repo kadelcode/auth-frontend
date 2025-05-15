@@ -63,7 +63,7 @@ export default function RegisterPage() {
 
     return (
         <div className="flex items-center justify-center h-screen bg-black">
-            <form onSubmit={handleRegister} className="w-[346px] text-white mx-auto p-6 border border-zinc-700 rounded-2xl shadow-md">
+            <form onSubmit={handleRegister} className="w-[346px] text-white mx-auto p-6 border border-gray-700 rounded-2xl shadow-md">
                 <h2 className="mb-4 text-2xl font-bold text-zinc-400">Register</h2>
                 {error && <p className="mb-4 font-bold text-red-500">{error}</p>}
                 <div className="mb-4">

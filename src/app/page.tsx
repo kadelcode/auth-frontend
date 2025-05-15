@@ -16,7 +16,7 @@ export default function HomePage() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-black p-6">
-      <h1 className="text-4xl font-bold mb-4 text-gray-400">Welcome to Auth Test App</h1>
+      <h1 className="text-4xl font-bold mb-4 text-gray-300">Welcome to Auth Test App</h1>
       <p className="mb-8 text-center max-w-md text-gray-600">
         This is a simple frontend built with Next.js 13+, TailwindCSS, and ShadCN to test an authentication backend system
   
@@ -30,21 +30,21 @@ export default function HomePage() {
         </Button>
 
         <Button 
-          className="bg-zinc-900 hover:bg-zinc-800 cursor-pointer"
+          className="bg-zinc-900 hover:bg-zinc-800 cursor-pointer text-white"
           onClick={() => router.push('/register')}
         >
           Register
         </Button>
 
         <Button 
-          className="bg-zinc-900 hover:bg-zinc-800 cursor-pointer"
+          className="bg-zinc-900 hover:bg-zinc-800 cursor-pointer text-white"
           onClick={() => router.push('/dashboard')}
         >
           Dashboard
         </Button>
 
         <Button 
-          className="bg-zinc-900 hover:bg-zinc-800 cursor-pointer"
+          className="bg-zinc-900 hover:bg-zinc-800 cursor-pointer text-white"
           onClick={() => router.push('/admin')}
         >
           Admin

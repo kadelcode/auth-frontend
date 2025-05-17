@@ -43,6 +43,18 @@ export default function DashboardPage() {
         }*/
     }, [router])
 
+    // Handle Logout
+    const handleLogout = async () => {
+        try {
+            await axios.post(`${getBaseUrl()}/logout`, {}, {
+                withCredentials: true, // Important to include cookies in request
+            });
+            router.push('/login');
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    }
+
     return (
         <div className="p-6 bg-black h-screen text-white">
             {user ? (
@@ -53,10 +65,7 @@ export default function DashboardPage() {
                     </p>
                     <Button
                       className="bg-zinc-900 hover:bg-zinc-800"
-                      onClick={() => {
-                        localStorage.removeItem('token')
-                        router.push('/login')
-                      }}
+                      onClick={handleLogout}
                     >
                         Logout
                     </Button>

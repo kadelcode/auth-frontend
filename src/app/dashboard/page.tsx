@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { getBaseUrl } from "@/lib/api"
-import { Loader } from "lucide-react"
+import { Loader, Loader2 } from "lucide-react"
 import axios from "axios"
 import { Button } from "@/components/ui/button"
 
@@ -16,6 +16,7 @@ type User = {
 export default function DashboardPage() {
     const router = useRouter()
     const [user, setUser] = useState<User | null>(null)
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -46,12 +47,15 @@ export default function DashboardPage() {
     // Handle Logout
     const handleLogout = async () => {
         try {
+            setLoading(true);
             await axios.post(`${getBaseUrl()}/logout`, {}, {
                 withCredentials: true, // Important to include cookies in request
             });
             router.push('/login');
         } catch (error) {
             console.error("Logout failed:", error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -64,10 +68,17 @@ export default function DashboardPage() {
                         This is the dashboard test page
                     </p>
                     <Button
-                      className="bg-zinc-900 hover:bg-zinc-800"
+                      className="bg-zinc-900 hover:bg-zinc-800 px-9 py-3"
                       onClick={handleLogout}
                     >
-                        Logout
+                        {loading ? (
+                            <div className="flex justify-center items-center">
+                                <Loader2 className="w-5 h-5 animate-spin" />
+                            </div>
+                        ):
+                        (
+                            "Logout"
+                        )}
                     </Button>
                 </div>
             ) : (

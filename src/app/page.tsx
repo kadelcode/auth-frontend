@@ -52,7 +52,7 @@ export default function HomePage() {
         </Button>
       </div>
 
-      <Link href="#">
+      <Link href="https://auth-service-production-d511.up.railway.app/api/v1/health">
         <Button
           className="bg-zinc-950 hover:bg-zinc-900 px-9 py-3 border border-gray-700 cursor-pointer text-white"
           title="The URL where the backend service is deployed."

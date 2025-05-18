@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Loader2, Eye, EyeOff } from "lucide-react";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -29,6 +30,7 @@ export default function LoginPage() {
       await axios.post(`${getBaseUrl()}/login`, { email, password }, {
         withCredentials: true, // Send & receive cookies
       });
+      toast.success("Login successful!");
       // Redirect to the dashboard or home page
       router.push("/dashboard");
     } catch (error) {

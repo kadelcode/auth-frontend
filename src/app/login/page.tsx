@@ -1,6 +1,6 @@
 "use client";
 
-import { getBaseUrl } from "@/lib/api";
+//import { getBaseUrl } from "@/lib/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -27,7 +27,7 @@ export default function LoginPage() {
     setLoading(true);
     setError("");
     try {
-      await axios.post(`${getBaseUrl()}/login`, { email, password }, {
+      await axios.post('/api/login', { email, password }, {
         withCredentials: true, // Send & receive cookies
       });
       toast.success("Login successful!");

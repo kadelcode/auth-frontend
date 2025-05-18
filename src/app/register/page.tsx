@@ -1,6 +1,6 @@
 "use client";
 
-import { getBaseUrl } from "@/lib/api";
+// import { getBaseUrl } from "@/lib/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -41,7 +41,7 @@ export default function RegisterPage() {
         return;
         }
         try {
-        const response = await axios.post(`${getBaseUrl()}/register`, {name, email, password }, {
+        const response = await axios.post('/api/register', {name, email, password }, {
             withCredentials: true,
         });
         if (response.status === 201) {

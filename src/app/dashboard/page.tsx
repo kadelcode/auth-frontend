@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { getBaseUrl } from "@/lib/api"
+// import { getBaseUrl } from "@/lib/api"
 import { Loader, Loader2 } from "lucide-react"
 import axios from "axios"
 import { Button } from "@/components/ui/button"
@@ -22,7 +22,7 @@ export default function DashboardPage() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get(`${getBaseUrl()}/profile`, {
+                const res = await axios.get('/api/profile', {
                     withCredentials: true, // Include cookie automatically
                 })
                 setUser(res.data)
@@ -49,7 +49,7 @@ export default function DashboardPage() {
     const handleLogout = async () => {
         try {
             setLoading(true);
-            await axios.post(`${getBaseUrl()}/logout`, {}, {
+            await axios.post('/api/logout', {}, {
                 withCredentials: true, // Important to include cookies in request
             });
             toast.success("Logout successful!");

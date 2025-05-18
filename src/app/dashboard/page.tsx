@@ -6,6 +6,7 @@ import { getBaseUrl } from "@/lib/api"
 import { Loader, Loader2 } from "lucide-react"
 import axios from "axios"
 import { Button } from "@/components/ui/button"
+import { toast } from "sonner"
 
 type User = {
     id: number;
@@ -51,9 +52,11 @@ export default function DashboardPage() {
             await axios.post(`${getBaseUrl()}/logout`, {}, {
                 withCredentials: true, // Important to include cookies in request
             });
+            toast.success("Logout successful!");
             router.push('/login');
         } catch (error) {
             console.error("Logout failed:", error);
+            toast.success("Logout failed!");
         } finally {
             setLoading(false);
         }
@@ -68,7 +71,7 @@ export default function DashboardPage() {
                         This is the dashboard test page
                     </p>
                     <Button
-                      className="bg-zinc-900 hover:bg-zinc-800 px-9 py-3"
+                      className="bg-zinc-900 hover:bg-zinc-800 w-[96px]"
                       onClick={handleLogout}
                     >
                         {loading ? (

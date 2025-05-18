@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: 'api/:path*', // All request to /api/ will be proxied
-        destination: 'https://auth-service-production-d511.up.railway.app/:path*', // Backend URL
+        source: '/api/:path*', // All request to /api/ will be proxied
+        destination: 'https://auth-service-production-d511.up.railway.app/api/v1/auth/:path*', // Backend URL
       }
     ]
   }

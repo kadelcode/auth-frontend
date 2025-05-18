@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Loader2, Eye, EyeOff } from "lucide-react";
+import { toast } from "sonner";
 
 
 export default function RegisterPage() {
@@ -45,6 +46,7 @@ export default function RegisterPage() {
         });
         if (response.status === 201) {
             // Redirect to the login page
+            toast.success("Registration successful!")
             router.push("/login");
         }
         } catch (error) {

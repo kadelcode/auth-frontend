@@ -27,6 +27,7 @@ export default function DashboardPage() {
                 })
                 setUser(res.data)
             } catch {
+                toast("Please login to access this page!")
                 router.push("/login")
             }
         }

@@ -36,35 +36,34 @@ export default function RegisterPage() {
         setLoading(true);
         setError("");
         if (password !== confirmPassword) {
-        setError("Passwords do not match");
-        setLoading(false);
-        return;
+            setError("Passwords do not match");
+            setLoading(false);
+            return;
         }
         try {
-        const response = await axios.post('/api/register', {name, email, password }, {
-            withCredentials: true,
-        });
-        if (response.status === 201) {
-            // Redirect to the login page
-            toast.success("Registration successful!")
-            router.push("/login");
-        }
-        } catch (error) {
-        console.error("Registration failed:", error);
-        if (axios.isAxiosError(error) && error.response && error.response.status === 400) {
-            setError("Bad request. Please check your input.");
-        } else if (axios.isAxiosError(error) && error.response && error.response.status === 409) {
-            setError("Email already exists. Please use a different email.");
-        } else if (axios.isAxiosError(error) && error.response && error.response.status === 500) {
-            console.log(error)
-            setError("Server error. Please try again later.");
-        } else {
-            setError("An error occurred. Please try again later.");
-        }
+            const response = await axios.post('/api/register', {name, email, password }, {
+                withCredentials: true,
+            });
+            if (response.status === 201) {
+                // Redirect to the login page
+                toast.success("Registration successful!")
+                router.push("/login");
+            }
+        } catch (error: unknown) {
+            console.error("Registration failed:", error);
+        
+            // Extract backend message if available
+            const message =
+              axios.isAxiosError(error) && error.response?.data?.message
+                ? error.response.data.message
+                : "An unexpected error occurred.";
+            
+            setError(message);
+            toast.error(message);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
-    }
+    };
 
     return (
         <div className="flex items-center justify-center h-screen bg-black">

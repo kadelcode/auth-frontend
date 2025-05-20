@@ -34,23 +34,16 @@ export default function LoginPage() {
       // Redirect to the dashboard or home page
       router.push("/dashboard");
     } catch (error) {
-      console.error("Login failed:", error);
-      // setError("Invalid email or password");
-      // Optionally, you can handle specific error messages based on the response status
-      if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
-        setError("Invalid email or password");
-      } else if (axios.isAxiosError(error) && error.response && error.response.status === 500) {
-        setError("Server error. Please try again later.");
-      } else if (axios.isAxiosError(error) && error.response && error.response.status === 400) {
-        setError("Bad request. Please check your input.");
-      } else if (axios.isAxiosError(error) && error.response && error.response.status === 404) {
-        setError("User not found. Please check your email.");
-      } else if (axios.isAxiosError(error) && error.response && error.response.status === 403) {
-        setError("Access denied. You do not have permission to access this resource.");
-      }
-       else {
-        setError("An error occurred. Please try again later.");
-    }
+        console.error("Login failed:", error);
+
+        // Extract message from backend if available
+        const message =
+          axios.isAxiosError(error) && error?.response?.data?.message
+            ? error.response.data.message
+            : "Invalid Credentials.";
+
+        setError(message);
+
     } finally {
       setLoading(false);
     }
